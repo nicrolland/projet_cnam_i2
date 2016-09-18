@@ -2,7 +2,7 @@
  *
  */
 
-package Vues;
+package Entities;
 
 /**
  * @author nicolas
