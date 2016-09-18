@@ -83,15 +83,16 @@ public class Comb extends HttpServlet {
 
         String message = request.getParameter("message");
         try {
-            (new ReleveAction()).traitReleve(message);
-            out.println("Releve JSON reçu");
+            int retour = (new ReleveAction()).traitReleve(message);
+            if (retour == 0) {
+                out.println("Pas de session active - non enregistre");
+            } else {
+                out.println("Releve JSON reçu");
+            }
         } catch (JSONException ex) {
             out.println("Releve JSON non reconnu");
             Logger.getLogger(Comb.class.getName()).log(Level.SEVERE, null, ex);
         }
-        /* TODO output your page here. You may use following sample code. */
-        out.println("<h1> POST Servlet Comb at " + request.getContextPath() + "</h1>");
-        out.println(message);
 
     }
 

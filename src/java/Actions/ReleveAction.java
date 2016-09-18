@@ -5,6 +5,7 @@ package Actions;
 
 import DAO.ReleveDAOSingle;
 import Entities.Releve;
+import Entities.SessionsEnCours;
 import org.json.JSONException;
 
 /**
@@ -16,18 +17,18 @@ public class ReleveAction {
         Releve releve = new Releve(releveBrut);
         // Lecture num boitier
         int numBoitier = releve.getBoitier_id();
-        releve.setSession(getNumSession(numBoitier));
+
+        // Recherche session_id
+        int session_id = (new SessionsEnCours()).getSessionIdByBoitier(numBoitier);
+        if (session_id == 0) {
+            return 0;
+        }
+        releve.setSession_id(session_id);
         // Calcul vitesse
         // a faire
-        
-        int i = ReleveDAOSingle.getInstance().insert(releve);
-        
-        return i;
-    }
+        ReleveDAOSingle.getInstance().insert(releve);
 
-    private int getNumSession(int boitierId) {
-        int numSession = 2;
-        return numSession;
+        return 1;
     }
 
 }

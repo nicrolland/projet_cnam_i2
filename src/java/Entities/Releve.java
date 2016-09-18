@@ -11,7 +11,7 @@ import org.json.JSONObject;
  */
 public class Releve {
 
-    int session;
+    int session_id;
     int boitier_id;
     String datetime;
     Double lat;
@@ -51,12 +51,12 @@ public class Releve {
         mesure9 = objson.getDouble("mesure9");
     }
 
-    public int getSession() {
-        return session;
+    public int getSession_id() {
+        return session_id;
     }
 
-    public void setSession(int session) {
-        this.session = session;
+    public void setSession_id(int session) {
+        this.session_id = session;
     }
 
     public int getBoitier_id() {

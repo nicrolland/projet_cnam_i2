@@ -29,7 +29,7 @@ public class ReleveDAOSingle {
             MongoDatabase mongodb = mongo.getDatabase("stpa");
 
             MongoCollection<Document> colReleve = mongodb.getCollection("releves");
-            Document doc = new Document("session", releve.getSession())
+            Document doc = new Document("session", releve.getSession_id())
                     .append("boitier_id", releve.getBoitier_id())
                     .append("datetime", releve.getDatetime())
                     .append("lat", releve.getLat())
@@ -46,6 +46,7 @@ public class ReleveDAOSingle {
                     .append("mesure9", releve.getMesure9());
             
             colReleve.insertOne(doc);
+            mongo.close();
         }
         return 1;
     }
