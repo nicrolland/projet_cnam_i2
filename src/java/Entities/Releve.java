@@ -51,6 +51,24 @@ public class Releve {
         mesure9 = objson.getDouble("mesure9");
     }
 
+    public Releve(int session, int boitier_id, String datetime, Double lat, Double lon, Double mesure0, Double mesure1, Double mesure2, Double mesure3, Double mesure4, Double mesure5, Double mesure6, Double mesure7, Double mesure8, Double mesure9) {
+        this.session_id = session;
+        this.boitier_id = boitier_id;
+        this.datetime = datetime;
+        this.lat = lat;
+        this.lon = lon;
+        this.mesure0 = mesure0;
+        this.mesure1 = mesure1;
+        this.mesure2 = mesure2;
+        this.mesure3 = mesure3;
+        this.mesure4 = mesure4;
+        this.mesure5 = mesure5;
+        this.mesure6 = mesure6;
+        this.mesure7 = mesure7;
+        this.mesure8 = mesure8;
+        this.mesure9 = mesure9;
+    }
+    
     public int getSession_id() {
         return session_id;
     }

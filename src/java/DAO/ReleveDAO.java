@@ -1,7 +1,9 @@
 package DAO;
 
 import Entities.Releve;
+import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import java.util.ArrayList;
@@ -44,4 +46,66 @@ public class ReleveDAO {
         return liste;
     }
 
+    public List<Releve> getAllSessionReleves(int session) {
+        MongoDatabase database = MongoBDManager.getMongoDataBase();
+        MongoCollection<Document> collection = database.getCollection("releves");
+        FindIterable<Document> cursor = collection.find(new Document("session", session));
+        ArrayList<Releve> list = new ArrayList<>();
+
+        for (Document current : cursor) {
+            Releve releve = new Releve(
+                    current.getInteger("session"),
+                    current.getInteger("boitier_id"),
+                    current.getString("datetime"),
+                    current.getDouble("lat"),
+                    current.getDouble("lon"),
+                    current.getDouble("mesure0"),
+                    current.getDouble("mesure1"),
+                    current.getDouble("mesure2"),
+                    current.getDouble("mesure3"),
+                    current.getDouble("mesure4"),
+                    current.getDouble("mesure5"),
+                    current.getDouble("mesure6"),
+                    current.getDouble("mesure7"),
+                    current.getDouble("mesure8"),
+                    current.getDouble("mesure9"));
+            list.add(releve);
+        }
+
+        return list;
+    }
+
+    public List<Releve> getSessionReleves(int session, String datetime) {
+        MongoDatabase database = MongoBDManager.getMongoDataBase();
+        MongoCollection<Document> collection = database.getCollection("releves");
+        ArrayList<Releve> list = new ArrayList<>();
+
+            BasicDBObject gtQuery = new BasicDBObject();
+            gtQuery.put("session", session);
+            gtQuery.put("datetime", new BasicDBObject("$gt", datetime));
+
+            FindIterable<Document> cursor = collection.find(gtQuery);
+
+            for (Document current : cursor) {
+                Releve releve = new Releve(
+                        current.getInteger("session"),
+                        current.getInteger("boitier_id"),
+                        current.getString("datetime"),
+                        current.getDouble("lat"),
+                        current.getDouble("lon"),
+                        current.getDouble("mesure0"),
+                        current.getDouble("mesure1"),
+                        current.getDouble("mesure2"),
+                        current.getDouble("mesure3"),
+                        current.getDouble("mesure4"),
+                        current.getDouble("mesure5"),
+                        current.getDouble("mesure6"),
+                        current.getDouble("mesure7"),
+                        current.getDouble("mesure8"),
+                        current.getDouble("mesure9"));
+                list.add(releve);
+            }
+        
+        return list;
+    }    
 }
