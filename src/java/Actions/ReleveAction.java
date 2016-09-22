@@ -8,6 +8,7 @@ import DAO.ReleveDAOSingle;
 import Entities.Releve;
 import Entities.SessionsEnCours;
 import java.util.List;
+import org.json.JSONArray;
 import org.json.JSONException;
 
 /**
@@ -33,20 +34,22 @@ public class ReleveAction {
         return 1;
     }
     
-    public List<Releve> getAllReleves(String releveBrut) throws JSONException {
+    public JSONArray getAllReleves(String releveBrut) throws JSONException {
         Releve releve = new Releve(releveBrut);
         ReleveDAO releveDao = new ReleveDAO();
         List<Releve> releves = releveDao.getAllSessionReleves(releve.getSession_id());
+        JSONArray jsonReleves = new JSONArray(releves);
         
-        return releves;
+        return jsonReleves;
     }
     
-    public List<Releve> getReleves(String releveBrut) throws JSONException {
+    public JSONArray getReleves(String releveBrut) throws JSONException {
         Releve releve = new Releve(releveBrut);
         ReleveDAO releveDao = new ReleveDAO();
         List<Releve> releves = releveDao.getSessionReleves(releve.getSession_id(), releve.getDatetime());
+        JSONArray jsonReleves = new JSONArray(releves);
         
-        return releves;
+        return jsonReleves;
     }
     
 
