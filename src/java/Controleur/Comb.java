@@ -3,7 +3,7 @@
  */
 package Controleur;
 
-import Actions.ReleveAction;
+import Actions.AcquisitionRlvAction;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
@@ -83,7 +83,7 @@ public class Comb extends HttpServlet {
 
         String message = request.getParameter("message");
         try {
-            int retour = (new ReleveAction()).traitReleve(message);
+            int retour = (new AcquisitionRlvAction()).traitReleve(message);
             if (retour == 0) {
                 out.println("Pas de session active - non enregistre");
             } else {

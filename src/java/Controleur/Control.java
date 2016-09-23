@@ -3,12 +3,17 @@
  */
 package Controleur;
 
+import Actions.SessionAction;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -27,19 +32,38 @@ public class Control extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Control</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Control at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        HttpSession session = request.getSession();
+        RequestDispatcher dispatch;
+
+        String action = request.getParameter("action");
+        int session_id = Integer.parseInt(request.getParameter("session_id"));
+
+        switch (action) {
+
+            case "session_start":
+                (new SessionAction()).start(0, 0);
+                dispatch = getServletContext().getRequestDispatcher("/session1.jsp");
+                dispatch.forward(request, response);
+                break;
+            case "session_stop":
+                (new SessionAction()).stop(0);
+                dispatch = getServletContext().getRequestDispatcher("/session0.jsp");
+                dispatch.forward(request, response);
+                break;
+            case "session_trait": {
+                try {
+                    (new SessionAction()).postTraitement(session_id);
+                } catch (ParseException ex) {
+                    Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            dispatch = getServletContext().getRequestDispatcher("/session.jsp");
+            dispatch.forward(request, response);
+            break;
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

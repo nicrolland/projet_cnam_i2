@@ -3,7 +3,7 @@
  */
 package Actions;
 
-import DAO.ReleveDAOSingle;
+import DAO.ReleveDAO;
 import Entities.Releve;
 import Entities.SessionsEnCours;
 import org.json.JSONException;
@@ -11,8 +11,9 @@ import org.json.JSONException;
 /**
  * @author nicolas
  */
-public class ReleveAction {
+public class AcquisitionRlvAction {
 
+    // RESERVE A L'AQUISITION DEPUIS LE BOITIER
     public int traitReleve(String releveBrut) throws JSONException {
         Releve releve = new Releve(releveBrut);
         // Lecture num boitier
@@ -26,7 +27,8 @@ public class ReleveAction {
         releve.setSession_id(session_id);
         // Calcul vitesse
         // a faire
-        ReleveDAOSingle.getInstance().insert(releve);
+        
+        (new ReleveDAO()).insert(releve);
 
         return 1;
     }

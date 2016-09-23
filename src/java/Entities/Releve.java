@@ -11,6 +11,7 @@ import org.json.JSONObject;
  */
 public class Releve {
 
+    String _id;
     int session_id;
     int boitier_id;
     String datetime;
@@ -26,6 +27,10 @@ public class Releve {
     Double mesure7;
     Double mesure8;
     Double mesure9;
+    Double distance;
+    Double vitesse;
+    Boolean depart;
+    int tour;
 
     public Releve() {
     }
@@ -51,8 +56,9 @@ public class Releve {
         mesure9 = objson.getDouble("mesure9");
     }
 
-    public Releve(int session, int boitier_id, String datetime, Double lat, Double lon, Double mesure0, Double mesure1, Double mesure2, Double mesure3, Double mesure4, Double mesure5, Double mesure6, Double mesure7, Double mesure8, Double mesure9) {
-        this.session_id = session;
+    public Releve(String id, int session_id, int boitier_id, String datetime, Double lat, Double lon, Double mesure0, Double mesure1, Double mesure2, Double mesure3, Double mesure4, Double mesure5, Double mesure6, Double mesure7, Double mesure8, Double mesure9) {
+        this._id = id;
+        this.session_id = session_id;
         this.boitier_id = boitier_id;
         this.datetime = datetime;
         this.lat = lat;
@@ -68,7 +74,7 @@ public class Releve {
         this.mesure8 = mesure8;
         this.mesure9 = mesure9;
     }
-    
+
     public int getSession_id() {
         return session_id;
     }
@@ -189,4 +195,44 @@ public class Releve {
         this.mesure9 = mesure9;
     }
 
+    public Double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(Double distance) {
+        this.distance = distance;
+    }
+
+    public Double getVitesse() {
+        return vitesse;
+    }
+
+    public void setVitesse(Double vitesse) {
+        this.vitesse = vitesse;
+    }
+
+    public String getId() {
+        return _id;
+    }
+
+    public void setId(String _id) {
+        this._id = _id;
+    }
+
+    public Boolean getDepart() {
+        return depart;
+    }
+
+    public void setDepart(Boolean depart) {
+        this.depart = depart;
+    }
+
+    public int getTour() {
+        return tour;
+    }
+
+    public void setTour(int tour) {
+        this.tour = tour;
+    }
+    
 }
