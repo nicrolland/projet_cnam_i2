@@ -2,7 +2,6 @@ package DAO;
 
 import Entities.Releve;
 import com.mongodb.BasicDBObject;
-import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -35,7 +34,11 @@ public class ReleveDAO {
                 .append("mesure6", releve.getMesure6())
                 .append("mesure7", releve.getMesure7())
                 .append("mesure8", releve.getMesure8())
-                .append("mesure9", releve.getMesure9());
+                .append("mesure9", releve.getMesure9())
+                .append("distance", releve.getDistance())
+                .append("vitesse", releve.getVitesse())
+                .append("depart", releve.getDepart())
+                .append("tour", releve.getTour());
         colReleve.insertOne(doc);
 
         return i;
@@ -99,7 +102,11 @@ public class ReleveDAO {
                     current.getDouble("mesure6"),
                     current.getDouble("mesure7"),
                     current.getDouble("mesure8"),
-                    current.getDouble("mesure9"));
+                    current.getDouble("mesure9"),
+                    current.getDouble("distance"),
+                    current.getDouble("vitesse"),
+                    current.getBoolean("depart"),
+                    current.getInteger("tour"));
             list.add(releve);
         }
 
@@ -134,7 +141,11 @@ public class ReleveDAO {
                     current.getDouble("mesure6"),
                     current.getDouble("mesure7"),
                     current.getDouble("mesure8"),
-                    current.getDouble("mesure9"));
+                    current.getDouble("mesure9"),
+                    current.getDouble("distance"),
+                    current.getDouble("vitesse"),
+                    current.getBoolean("depart"),
+                    current.getInteger("tour"));
             list.add(releve);
         }
 

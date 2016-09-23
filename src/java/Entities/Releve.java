@@ -40,23 +40,27 @@ public class Releve {
      */
     public Releve(String string) throws JSONException {
         JSONObject objson = new JSONObject(string);
-        boitier_id = objson.getInt("boitier_id");
-        datetime = objson.getString("datetime");
-        lat = objson.getDouble("lat");
-        lon = objson.getDouble("lon");
-        mesure0 = objson.getDouble("mesure0");
-        mesure1 = objson.getDouble("mesure1");
-        mesure2 = objson.getDouble("mesure2");
-        mesure3 = objson.getDouble("mesure3");
-        mesure4 = objson.getDouble("mesure4");
-        mesure5 = objson.getDouble("mesure5");
-        mesure6 = objson.getDouble("mesure6");
-        mesure7 = objson.getDouble("mesure7");
-        mesure8 = objson.getDouble("mesure8");
-        mesure9 = objson.getDouble("mesure9");
+        this.boitier_id = objson.getInt("boitier_id");
+        this.datetime = objson.getString("datetime");
+        this.lat = objson.getDouble("lat");
+        this.lon = objson.getDouble("lon");
+        this.mesure0 = objson.getDouble("mesure0");
+        this.mesure1 = objson.getDouble("mesure1");
+        this.mesure2 = objson.getDouble("mesure2");
+        this.mesure3 = objson.getDouble("mesure3");
+        this.mesure4 = objson.getDouble("mesure4");
+        this.mesure5 = objson.getDouble("mesure5");
+        this.mesure6 = objson.getDouble("mesure6");
+        this.mesure7 = objson.getDouble("mesure7");
+        this.mesure8 = objson.getDouble("mesure8");
+        this.mesure9 = objson.getDouble("mesure9");
+        this.distance = objson.getDouble("distance");
+        this.vitesse = objson.getDouble("vitesse");
+        this.depart = objson.getBoolean("depart");
+        this.tour = objson.getInt("tour");
     }
 
-    public Releve(String id, int session_id, int boitier_id, String datetime, Double lat, Double lon, Double mesure0, Double mesure1, Double mesure2, Double mesure3, Double mesure4, Double mesure5, Double mesure6, Double mesure7, Double mesure8, Double mesure9) {
+    public Releve(String id, int session_id, int boitier_id, String datetime, Double lat, Double lon, Double mesure0, Double mesure1, Double mesure2, Double mesure3, Double mesure4, Double mesure5, Double mesure6, Double mesure7, Double mesure8, Double mesure9,Double distance, Double vitesse, Boolean depart, int tour) {
         this._id = id;
         this.session_id = session_id;
         this.boitier_id = boitier_id;
@@ -73,6 +77,10 @@ public class Releve {
         this.mesure7 = mesure7;
         this.mesure8 = mesure8;
         this.mesure9 = mesure9;
+        this.distance = distance;
+        this.vitesse = vitesse;
+        this.depart = depart;
+        this.tour = tour;
     }
 
     public int getSession_id() {
