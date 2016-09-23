@@ -62,7 +62,7 @@ public class SessionAction {
                 releve.setDistance(distance(releve.getLat(), releve_prec.getLat(), releve.getLon(), releve_prec.getLon(), 0, 0));
 
                 // vitesse m/s
-                DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSS");
+                DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
                 Date date_prec = df1.parse(releve_prec.getDatetime());
                 Date date = df1.parse(releve.getDatetime());
                 long deltaMilli = date.getTime() - date_prec.getTime();

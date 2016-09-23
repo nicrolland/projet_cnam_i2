@@ -78,6 +78,6 @@ public class SocketsServer {
     }
 
     public String getCurrentTimeStamp() {
-        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSSSS").format(new Date());
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(new Date());
     }
 }

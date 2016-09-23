@@ -13,13 +13,13 @@ public class Main {
         SocketsServer ts = new SocketsServer(host, port);
         ts.open();
     
-        String heure = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSSSS").format(new Date());
+        String heure = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(new Date());
         System.out.println(heure + " Main > Serveur initialisé.");
 
         for (int i = 0; i < 1; i++) {
             Thread t = new Thread(new Client(host, port, i));
             t.start();
-//            heure = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSSSS").format(new Date());
+//            heure = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(new Date());
 //            System.out.println(heure + " Main > Client " + i + " Start ");
         }
     }

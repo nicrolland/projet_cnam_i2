@@ -54,9 +54,10 @@ public class Releve {
         mesure2 = objson.getDouble("gyrx");
         mesure3 = objson.getDouble("gyry");
         mesure4 = objson.getDouble("gyrz");
+
     }
 
-    public Releve(String id, int session_id, int boitier_id, String datetime, Double lat, Double lon, Double mesure0, Double mesure1, Double mesure2, Double mesure3, Double mesure4, Double mesure5, Double mesure6, Double mesure7, Double mesure8, Double mesure9) {
+    public Releve(String id, int session_id, int boitier_id, String datetime, Double lat, Double lon, Double mesure0, Double mesure1, Double mesure2, Double mesure3, Double mesure4, Double mesure5, Double mesure6, Double mesure7, Double mesure8, Double mesure9, Double distance, Double vitesse, Boolean depart, int tour) {
         this._id = id;
         this.session_id = session_id;
         this.boitier_id = boitier_id;
@@ -73,6 +74,10 @@ public class Releve {
         this.mesure7 = mesure7;
         this.mesure8 = mesure8;
         this.mesure9 = mesure9;
+        this.distance = distance;
+        this.vitesse = vitesse;
+        this.depart = depart;
+        this.tour = tour;
     }
 
     public int getSession_id() {

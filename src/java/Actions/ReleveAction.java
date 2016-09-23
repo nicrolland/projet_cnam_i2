@@ -14,19 +14,18 @@ import org.json.JSONException;
  */
 public class ReleveAction {
     
-    public JSONArray getAllReleves(String releveBrut) throws JSONException {
-        Releve releve = new Releve(releveBrut);
+    public JSONArray getAllReleves(int session_id) throws JSONException {
+        //Releve releve = new Releve(releveBrut);
         ReleveDAO releveDao = new ReleveDAO();
-        List<Releve> releves = releveDao.getAllSessionReleves(releve.getSession_id());
+        List<Releve> releves = releveDao.getAllSessionReleves(session_id);
         JSONArray jsonReleves = new JSONArray(releves);
         
         return jsonReleves;
     }
     
-    public JSONArray getReleves(String releveBrut) throws JSONException {
-        Releve releve = new Releve(releveBrut);
+    public JSONArray getReleves(int session_id, String datetime) throws JSONException {
         ReleveDAO releveDao = new ReleveDAO();
-        List<Releve> releves = releveDao.getSessionReleves(releve.getSession_id(), releve.getDatetime());
+        List<Releve> releves = releveDao.getSessionReleves(session_id, datetime);
         JSONArray jsonReleves = new JSONArray(releves);
         
         return jsonReleves;
