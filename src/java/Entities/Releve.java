@@ -3,6 +3,10 @@
  */
 package Entities;
 
+import java.security.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -36,24 +40,20 @@ public class Releve {
     }
 
     /*
-     *    Releve depuis string (json) de releve brut
+     *    Releve depuis json de releve brut
      */
-    public Releve(String string) throws JSONException {
-        JSONObject objson = new JSONObject(string);
-        boitier_id = objson.getInt("boitier_id");
-        datetime = objson.getString("datetime");
-        lat = objson.getDouble("lat");
-        lon = objson.getDouble("lon");
-        mesure0 = objson.getDouble("mesure0");
-        mesure1 = objson.getDouble("mesure1");
-        mesure2 = objson.getDouble("mesure2");
-        mesure3 = objson.getDouble("mesure3");
-        mesure4 = objson.getDouble("mesure4");
-        mesure5 = objson.getDouble("mesure5");
-        mesure6 = objson.getDouble("mesure6");
-        mesure7 = objson.getDouble("mesure7");
-        mesure8 = objson.getDouble("mesure8");
-        mesure9 = objson.getDouble("mesure9");
+    public Releve(JSONObject objson) throws JSONException {
+        boitier_id = objson.getInt("id");
+        Date d = new Date(objson.getInt("timestamp"));
+        DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
+        datetime = df1.format(d);
+        lat = objson.getDouble("latitude");
+        lon = objson.getDouble("longitude");
+        mesure0 = objson.getDouble("accx");
+        mesure1 = objson.getDouble("accy");
+        mesure2 = objson.getDouble("gyrx");
+        mesure3 = objson.getDouble("gyry");
+        mesure4 = objson.getDouble("gyrz");
     }
 
     public Releve(String id, int session_id, int boitier_id, String datetime, Double lat, Double lon, Double mesure0, Double mesure1, Double mesure2, Double mesure3, Double mesure4, Double mesure5, Double mesure6, Double mesure7, Double mesure8, Double mesure9) {
@@ -234,5 +234,5 @@ public class Releve {
     public void setTour(int tour) {
         this.tour = tour;
     }
-    
+
 }
