@@ -82,12 +82,13 @@ public class Comb extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         String message = request.getParameter("message");
+                
         try {
             int retour = (new AcquisitionRlvAction()).traitReleve(message);
             if (retour == 0) {
                 out.println("Pas de session active - non enregistre");
             } else {
-                out.println("Releve JSON reçu");
+                out.println("Releve(s) JSON reçu(s) : " + retour);
             }
         } catch (JSONException ex) {
             out.println("Releve JSON non reconnu");

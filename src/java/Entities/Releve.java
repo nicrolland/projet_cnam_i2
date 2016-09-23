@@ -40,7 +40,7 @@ public class Releve {
     }
 
     /*
-     *    Releve depuis json de releve brut
+     *    Releve depuis json de releve brut Emile
      */
     public Releve(JSONObject objson) throws JSONException {
         boitier_id = objson.getInt("id");
