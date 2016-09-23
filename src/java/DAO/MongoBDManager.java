@@ -15,31 +15,31 @@ public class MongoBDManager {
 
     private static final String host = "localhost";
     private static final int port = 27017;
-    private static final String base = "mongo_test";
+    private static final String base = "stpa";
     private static MongoDatabase database;
-    
-    private MongoBDManager(){
+
+    private MongoBDManager() {
     }
 
     public static MongoDatabase getMongoDataBase() {
         if (database == null) { // Premier appel
             MongoBDManager.database = null;
             try {
-            /**
-             * ** Connect to MongoDB ***
-             */
-            MongoClient mongo = new MongoClient(host, port);
+                /**
+                 * ** Connect to MongoDB ***
+                 */
+                MongoClient mongo = new MongoClient(host, port);
 
-            /**
-             * ** Get database ***
-             */
-            // if database doesn't exists, MongoDB will create it
-            MongoBDManager.database = mongo.getDatabase(base);
+                /**
+                 * ** Get database ***
+                 */
+                // if database doesn't exists, MongoDB will create it
+                MongoBDManager.database = mongo.getDatabase(base);
 
-        } catch (Exception e) {
-            e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-        }
-       return database;
+        return database;
     }
 }
