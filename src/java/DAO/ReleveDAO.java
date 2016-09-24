@@ -5,6 +5,7 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Sorts;
 import com.mongodb.client.result.UpdateResult;
 import java.util.ArrayList;
 import java.util.List;
@@ -82,7 +83,8 @@ public class ReleveDAO {
     public List<Releve> getAllSessionReleves(int session) {
         MongoDatabase database = MongoBDManager.getMongoDataBase();
         MongoCollection<Document> collection = database.getCollection("releves");
-        FindIterable<Document> cursor = collection.find(new Document("session_id", session));
+//        Document filter = new Document("datetime","");
+        FindIterable<Document> cursor = collection.find(new Document("session_id", session)).sort(Sorts.ascending("datetime"));
         ArrayList<Releve> list = new ArrayList<>();
 
         for (Document current : cursor) {

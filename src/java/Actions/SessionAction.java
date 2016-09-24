@@ -50,7 +50,7 @@ public class SessionAction {
         // Simulation
         releve_prec.setLat(43.0921765594184);
         releve_prec.setLon(1.27556041011034);
-        releve_prec.setDatetime("2016-09-22T18:37:24.000752");
+        releve_prec.setDatetime("2016-01-01T00:00:00.000");
         releve_prec.setTour(1);
         tour = 1;
 
@@ -61,12 +61,15 @@ public class SessionAction {
                 // distance m
                 releve.setDistance(distance(releve.getLat(), releve_prec.getLat(), releve.getLon(), releve_prec.getLon(), 0, 0));
 
-                // vitesse m/s
+                // temps
                 DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
                 Date date_prec = df1.parse(releve_prec.getDatetime());
                 Date date = df1.parse(releve.getDatetime());
                 long deltaMilli = date.getTime() - date_prec.getTime();
-                long deltaSec = deltaMilli / 1000;
+                double deltaSec = deltaMilli / 1000.0;
+                releve.setMesure9(deltaSec);
+                
+                // vitesse m/s
                 releve.setVitesse(releve.getDistance() / deltaSec);
 
                 // ligne de depart // Line2D.Double(x1, y1, x2, y2);

@@ -27,10 +27,14 @@ public class AcquisitionRlvAction {
             int numBoitier = releve.getBoitier_id();
 
             // Recherche session_id
-            int session_id = (new SessionsEnCours()).getSessionIdByBoitier(numBoitier);
-            if (session_id == 10) {
-                return retour;
-            }
+//            int session_id = (new SessionsEnCours()).getSessionIdByBoitier(numBoitier);
+//            if (session_id == 0) {
+//                return retour;
+//            }
+            
+            // simulation
+            int session_id = 102;
+
             releve.setSession_id(session_id);
             (new ReleveDAO()).insert(releve);
             retour = retour + 1;
